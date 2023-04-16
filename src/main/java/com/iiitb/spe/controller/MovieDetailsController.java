@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import com.iiitb.spe.service.MovieDetailsService;
 
 import com.iiitb.spe.models.Movie_Details;
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 
 @RestController
 public class MovieDetailsController {
