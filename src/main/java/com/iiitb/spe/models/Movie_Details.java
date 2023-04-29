@@ -17,6 +17,12 @@ public class Movie_Details {
     @Column(name = "ott_platforms")
     private String ott_platforms;
 
+    @Column(name = "movie_img")
+    private String movie_img;
+
+    @Column(name = "genre")
+    private String genre;
+
     public int getId() {
         return id;
     }
@@ -48,5 +54,17 @@ public class Movie_Details {
     public void setOtt_platforms(String ott_platforms) {
         this.ott_platforms = ott_platforms;
     }
+
+    public String getMovie_img() {
+        return movie_img;
+    }
+
+    public void setMovie_img(String movie_img) {
+        this.movie_img = movie_img;
+    }
+
+    public void setGenre(String genre){this.genre = genre;}
+
+    public String getGenre(){return this.genre;}
 }
 
