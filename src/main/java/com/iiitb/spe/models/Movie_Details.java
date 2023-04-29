@@ -54,6 +54,9 @@ public class Movie_Details {
     public void setOtt_platforms(String ott_platforms) {
         this.ott_platforms = ott_platforms;
     }
+    public String getAllDetails(){
+        return "Movie is " + this.movie_name + ".Release date is "  + this.release_date + ".ott-platfroms "+this.ott_platforms;
+    }
 
     public String getMovie_img() {
         return movie_img;
