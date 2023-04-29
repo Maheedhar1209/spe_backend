@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.iiitb.spe.service.MovieDetailsService;
+import com.iiitb.spe.service.MyListDetailsService;
 
 import com.iiitb.spe.models.Movie_Details;
 @CrossOrigin(origins = "http://localhost:4200")
@@ -26,6 +27,8 @@ import com.iiitb.spe.models.Movie_Details;
 public class MovieDetailsController {
     @Autowired
     private MovieDetailsService movieDetailsService;
+    @Autowired
+    private MyListDetailsService mylistdetailsservice;
     @GetMapping("/Movie")
     public ResponseEntity<Object> moviedetails(@RequestParam("movie_name") String movie_name){
         System.out.println("fdfdfdfdfdsdfd");
