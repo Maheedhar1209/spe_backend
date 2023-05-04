@@ -7,6 +7,11 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
+import com.iiitb.spe.models.NewReleases;
+import com.iiitb.spe.models.User_Login;
+import com.iiitb.spe.repositories.MovieDetailsRepository;
+import com.iiitb.spe.repositories.NewReleasesRepository;
+import com.iiitb.spe.repositories.UserLoginRepository;
 import com.twilio.exception.TwilioException;
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +44,12 @@ import java.util.Random;
 public class MovieDetailsController {
     @Autowired
     private MovieDetailsService movieDetailsService;
+    @Autowired
+    private NewReleasesRepository newReleasesRepository;
+    @Autowired
+    private MovieDetailsRepository movieDetailsRepository;
+    @Autowired
+    private UserLoginRepository userLoginRepository;
     @GetMapping("/Movie")
     public Movie_Details moviedetails(@RequestParam("movie_name") String movie_name){
         System.out.println("fdfdfdfdfdsdfd");
@@ -46,6 +57,26 @@ public class MovieDetailsController {
         Movie_Details md=movieDetailsService.findByMovieName(movie_name);
 
        return md;
+    }
+    @GetMapping("/newreleases")
+    public  List<NewReleases> newreleases(@RequestParam String phone_number){
+        System.out.println(phone_number);
+        List<NewReleases> newReleases=newReleasesRepository.findbyphonenumber(phone_number);
+        return newReleases;
+    }
+    @DeleteMapping("/deletenewreleases")
+    public ResponseEntity<Void> deletenewreleases(@RequestParam String phone_number){
+        newReleasesRepository.deletenewreleases(phone_number);
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping("/addnewrelease")
+    public ResponseEntity<Void>  addnewrelease(@RequestBody Movie_Details movie_details){
+        movieDetailsRepository.save(movie_details);
+       List<User_Login> ul=userLoginRepository.allusers();
+       for (User_Login user_login:ul){
+           newReleasesRepository.save(new NewReleases(user_login.getPhone_number(),movie_details.getMovie_name()));
+       }
+       return ResponseEntity.ok().build();
     }
     @GetMapping("/sms")
     public ResponseEntity<Void> sendsms(@RequestParam String movie_details,@RequestParam String phone_number){
