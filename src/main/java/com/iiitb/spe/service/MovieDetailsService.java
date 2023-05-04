@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.iiitb.spe.models.Movie_Details;
 import com.iiitb.spe.repositories.MovieDetailsRepository;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class MovieDetailsService {
@@ -20,4 +22,6 @@ public class MovieDetailsService {
     {
         return repo.findByMovieName(movie_name);
     }
+
+    public List<Movie_Details> findbyMovieGenre(String movie_genre) {return repo.findByMovieGenre(movie_genre); }
 }

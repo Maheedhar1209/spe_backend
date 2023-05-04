@@ -2,6 +2,7 @@ package com.iiitb.spe.repositories;
 
 
 
+import com.iiitb.spe.models.Movie_ID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,5 +17,9 @@ public interface MovieDetailsRepository extends JpaRepository<Movie_Details, Str
 
     @Query(value = "SELECT * FROM movie_details m WHERE m.movie_name = :movie_name", nativeQuery = true)
     Movie_Details findByMovieName(@Param("movie_name") String movie_name);
+
+    @Query(value = "SELECT * FROM movie_details m WHERE m.genre = :genre", nativeQuery = true)
+    List<Movie_Details> findByMovieGenre(@Param("genre") String genre);
+
 
 }
