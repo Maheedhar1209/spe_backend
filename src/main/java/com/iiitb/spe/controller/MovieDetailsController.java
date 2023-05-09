@@ -12,6 +12,8 @@ import com.twilio.Twilio;
 import com.twilio.exception.TwilioException;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
+import org.apache.tomcat.util.json.JSONParser;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -87,5 +89,20 @@ public class MovieDetailsController {
 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+    @PostMapping("/AddMyList")
+    public boolean add_mylist(@RequestParam(value="movie_name") String movie_name, @RequestParam(value="user_id") String user_id){
+        System.out.println("adder");
+        System.out.println(movie_name);
+        mylistdetailsservice.addMovieMyList(movie_name, user_id);
+        List<Movie_Details> mld = new ArrayList<Movie_Details>();
+//        if (mld != null) {
+//            return ResponseEntity.ok(mld);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//        Object str = new Object();
+//        str = "hello";
+        return true;
     }
 }

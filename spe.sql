@@ -3,6 +3,7 @@ drop database spe;
 create database spe;
 use spe;
 
+
 CREATE TABLE movie_details (
 	id INT NOT NULL AUTO_INCREMENT,
 	movie_name VARCHAR(255) NOT NULL,
@@ -10,7 +11,14 @@ CREATE TABLE movie_details (
 	ott_platforms VARCHAR(255) NOT NULL,
 	movie_img VARCHAR(255) NOT NULL,
 	genre VARCHAR(255) NOT NULL,
-	PRIMARY KEY (id)
+	about VARCHAR(255) NOT NULL,
+	PRIMARY KEY (id,movie_name)
+);
+
+CREATE TABLE user_login (
+  id INT NOT NULL AUTO_INCREMENT,
+  phone_number VARCHAR(255) NOT NULL,
+  PRIMARY KEY(id)
 );
 
 CREATE TABLE mylist_details (
@@ -19,6 +27,15 @@ CREATE TABLE mylist_details (
     movie_name VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE new_releases (
+ id INT NOT NULL AUTO_INCREMENT,
+  phone_number VARCHAR(255) NOT NULL,
+  movie_name VARCHAR(255) NOT NULL,
+  PRIMARY KEY(id)
+);
+
+insert into user_login(phone_number) values ("9704525404");
 
 
 

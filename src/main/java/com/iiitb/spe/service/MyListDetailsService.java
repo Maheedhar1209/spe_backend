@@ -22,4 +22,5 @@ public class MyListDetailsService {
     {
         return repo.findByUserID(user_id);
     }
+    public void addMovieMyList(String movie_name, String user_id) {repo.addMovieMyList(movie_name, user_id);}
 }
