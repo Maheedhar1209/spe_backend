@@ -17,11 +17,37 @@ public class Movie_Details {
     @Column(name = "ott_platforms")
     private String ott_platforms;
 
-    @Column(name = "movie_img")
-    private String movie_img;
-
     @Column(name = "genre")
     private String genre;
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    @Column(name = "about")
+   private String about;
+    @Column(name = "url")
+    private String url;
 
     public int getId() {
         return id;
@@ -57,17 +83,5 @@ public class Movie_Details {
     public String getAllDetails(){
         return "Movie is " + this.movie_name + ".Release date is "  + this.release_date + ".ott-platfroms "+this.ott_platforms;
     }
-
-    public String getMovie_img() {
-        return movie_img;
-    }
-
-    public void setMovie_img(String movie_img) {
-        this.movie_img = movie_img;
-    }
-
-    public void setGenre(String genre){this.genre = genre;}
-
-    public String getGenre(){return this.genre;}
 }
 
