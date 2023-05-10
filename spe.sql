@@ -39,8 +39,8 @@ insert into user_login(phone_number) values ("9704525404");
 
 
 
-insert into movie_details(movie_name,release_date,ott_platforms,movie_img, genre) values ("Racegurram","24thmarch","Netflix","https://movietitles.s3.ap-south-1.amazonaws.com/movie4.jpeg", "Comedy");
-insert into movie_details(movie_name,release_date,ott_platforms,movie_img, genre) values ("RRR","25thmarch","Zee5","https://movietitles.s3.ap-south-1.amazonaws.com/movie5.jpeg", "Action");
+insert into movie_details(movie_name,release_date,ott_platforms,movie_img, genre, about) values ("Racegurram","24thmarch","Netflix","https://movietitles.s3.ap-south-1.amazonaws.com/movie4.jpeg", "Comedy", "Brahmanandam cameo is the highlight in the movie");
+insert into movie_details(movie_name,release_date,ott_platforms,movie_img, genre, about) values ("RRR","25thmarch","Zee5","https://movietitles.s3.ap-south-1.amazonaws.com/movie5.jpeg", "Action", "Ram charan domaintes the movie");
 insert into mylist_details(user_id, movie_name) values (1,"Racegurram");
 insert into mylist_details(user_id, movie_name) values (1,"RRR");
 

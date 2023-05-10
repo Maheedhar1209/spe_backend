@@ -20,6 +20,13 @@ public class Movie_Details {
     @Column(name = "genre")
     private String genre;
 
+    @Column(name = "movie_img")
+    private String movie_img;
+
+    @Column(name = "about")
+    private String about;
+
+
     public String getGenre() {
         return genre;
     }
@@ -36,19 +43,6 @@ public class Movie_Details {
         this.about = about;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    @Column(name = "about")
-   private String about;
-    @Column(name = "url")
-    private String url;
-
     public int getId() {
         return id;
     }
@@ -63,6 +57,14 @@ public class Movie_Details {
 
     public void setMovie_name(String movie_name) {
         this.movie_name = movie_name;
+    }
+
+    public String getMovie_img() {
+        return movie_img;
+    }
+
+    public void setMovie_img(String movie_img) {
+        this.movie_img = movie_img;
     }
 
     public String getRelease_date() {
