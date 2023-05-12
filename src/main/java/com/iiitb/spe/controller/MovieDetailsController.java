@@ -8,6 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.iiitb.spe.models.Movie_ID;
+import com.iiitb.spe.models.User_Login;
+import com.iiitb.spe.models.NewReleases;
+import com.iiitb.spe.repositories.MovieDetailsRepository;
+import com.iiitb.spe.repositories.NewReleasesRepository;
+import com.iiitb.spe.repositories.UserLoginRepository;
 import com.twilio.Twilio;
 import com.twilio.exception.TwilioException;
 import com.twilio.rest.api.v2010.account.Message;
@@ -31,6 +36,12 @@ public class MovieDetailsController {
     private MovieDetailsService movieDetailsService;
     @Autowired
     private MyListDetailsService mylistdetailsservice;
+    @Autowired
+    private NewReleasesRepository newReleasesRepository;
+    @Autowired
+    private MovieDetailsRepository movieDetailsRepository;
+    @Autowired
+    private UserLoginRepository userLoginRepository;
     @GetMapping("/Movie")
     public ResponseEntity<Object> moviedetails(@RequestParam("movie_name") String movie_name){
         System.out.println("fdfdfdfdfdsdfd");
@@ -43,6 +54,51 @@ public class MovieDetailsController {
             return ResponseEntity.notFound().build();
         }
     
+    }
+
+    @GetMapping("/newreleases")
+    public  List<Movie_Details> newreleases(@RequestParam String user_id){
+        System.out.println(user_id);
+        List<NewReleases> newReleases=newReleasesRepository.findByID(user_id);
+        List<Movie_Details> mld = new ArrayList<Movie_Details>();
+        for (int i=0; i<newReleases.size(); i++)
+        {
+            mld.add(movieDetailsService.findByMovieName(newReleases.get(i).getMovie_name()));
+            System.out.println(movieDetailsService.findByMovieName(newReleases.get(i).getMovie_name()).getMovie_name());
+
+        }
+        return mld;
+    }
+    @DeleteMapping("/deletenewreleases")
+    public ResponseEntity<Void> deletenewreleases(@RequestParam int id){
+        newReleasesRepository.deletenewreleases(id);
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping("/addnewrelease")
+    public int  addnewrelease(@RequestBody Movie_Details movie_details){
+        Movie_Details md=movieDetailsRepository.findByMovieName(movie_details.getMovie_name());
+        if (md!=null)
+            return 0;
+        movieDetailsRepository.save(movie_details);
+        List<User_Login> ul=userLoginRepository.allusers();
+        for (User_Login user_login:ul){
+            newReleasesRepository.save(new NewReleases(user_login.getPhone_number(),movie_details.getMovie_name()));
+        }
+
+        return 1;
+    }
+    @PostMapping("/changemoviedetails")
+    public int  changemoviedetails(@RequestBody Movie_Details movie_details){
+        Movie_Details md=movieDetailsRepository.findByMovieName(movie_details.getMovie_name());
+        if (md==null)
+            return 0;
+        md.setMovie_img(movie_details.getMovie_img());
+        md.setAbout(movie_details.getAbout());
+        md.setAbout(movie_details.getAbout());
+        md.setOtt_platforms(movie_details.getOtt_platforms());
+        md.setRelease_date(movie_details.getRelease_date());
+        movieDetailsRepository.save(md);
+        return 1;
     }
     @PostMapping("/MyList")
     public ResponseEntity<Object> mylist_details(@RequestParam(value="user_id") String user_id){

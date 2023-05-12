@@ -18,11 +18,11 @@ import java.util.List;
 public interface NewReleasesRepository extends JpaRepository<NewReleases, String> {
 
 
-    @Query(value = "SELECT * FROM new_releases m WHERE m.phone_number = :phone_number", nativeQuery = true)
-    List<NewReleases> findbyphonenumber(@Param("phone_number") String phone_number);
+    @Query(value = "SELECT * FROM new_releases m WHERE m.id = :id", nativeQuery = true)
+    List<NewReleases> findByID(@Param("id") String id);
     @Transactional
     @Modifying
-    @Query(value = "DELETE FROM new_releases WHERE phone_number = :phone_number", nativeQuery = true)
-    void  deletenewreleases(@Param("phone_number") String phone_number);
+    @Query(value = "DELETE FROM new_releases WHERE id = :id", nativeQuery = true)
+    void  deletenewreleases(@Param("id") int id);
 
 }
