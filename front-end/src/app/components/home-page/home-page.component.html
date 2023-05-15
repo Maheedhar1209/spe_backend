@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Netflix Homepage</title>
+
+  </head>
+  <body  >
+   
+    <!-- Top Navigation Bar -->
+    <nav>
+      <ul>
+        <li><a href="/home/#">Home</a></li>
+        <li><a href="#"><div class="dropdown">
+          TV Shows
+          <div class="dropdown-options">
+            <option></option><a href="#action">Action</a>
+            <option></option><a href="#comedy">Comedy</a>
+            <option></option><a href="#thriller">Thriller</a>
+            <option></option><a href="#scifi">SciFi</a>
+          </div>
+        </div></a></li>
+        <li><a href="#"><div class="dropdown">
+          Movies
+          <div class="dropdown-options">
+            <!-- <option></option><a href="#action">Action <button (click)="Genre('Action', 'action_slid')">click here</button></a>
+            <option></option><a href="#comedy">Comedy <button (click)="Genre('Comedy', 'comedy_slid')">click here</button></a>
+            <option></option><a href="#thriller">Thriller <button (click)="Genre('Thriller', 'thriller_slid')">click here</button></a>
+            <option></option><a href="#scifi">SciFi <button (click)="Genre('SciFi', 'scifi_slid')">click here</button></a> -->
+            <option></option><a href="home#action">Action </a>
+            <option></option><a href="home#comedy">Comedy </a>
+            <option></option><a href="home#thriller">Thriller </a>
+            <option></option><a href="home#scifi">SciFi </a>
+          </div>
+        </div></a></li> 
+        <li><a href="home#mylist">My List</a>
+        <li>  <button type="button" class="icon-button" (click)="shownotifications()">
+          <span class="material-icons"><i style="color: white; font-size:24px;" class="fa fa-bell"></i></span>
+          <span class="icon-button__badge">{{show_no_of_movies}}</span>
+        </button></li>
+        <li (click)="logout()"><a style="cursor: pointer;" >Logout</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main Section -->
+    <section id="main" *ngIf="!showElement">
+      <div class="slider">
+        <div id="search-bar" style="display: flex;  top: 15px;">
+          <input type="text" placeholder="Search For Movies,Tv shows" style="display: flex; background-color: black; border-color: white; color: white;"   [(ngModel)]="movie_title" />
+          <button type="submit" (click)="moviesearch()" style="width:10%; height:30px;background-color:black;color: white; display:flex; text-align: center; font-size: large; border: 0cm; margin-left: 5px; padding-left: 4px; margin-top: 5px;"><i class="fa fa-search"></i></button>
+        </div>
+        <h2 style="color: white;" id ="action">Action Movies / TV Shows</h2>
+        <div class="slider-container" style="color: white;">
+          <div class="slider-wrapper">
+            <div *ngFor="let img of act_images | async" class="slider-item " >
+           
+         
+              <!-- <img src={{images[0][0]}}> -->
+              <!-- {{img.movie_name}} ={{movie_title}} -->
+              <img src={{img.movie_img}} (click)='set(img.movie_name)'>
+              <h3 style="color: white;">{{img.movie_name}} </h3>
+            </div>
+            <!-- Add more movies here -->
+          </div>
+          
+        </div>
+       
+        <h2 style="color: white;" id ="comedy">Comedy Movies / TV Shows</h2>
+        <div class="slider-container" style="color: white;">
+          <div class="slider-wrapper" >
+            <div *ngFor="let img of com_images | async" class="slider-item " >
+           
+         
+              <!-- <img src={{images[0][0]}}> -->
+              <!-- {{img.movie_name}} ={{movie_title}} -->
+              <img src={{img.movie_img}} (click)='set(img.movie_name)'>
+              <h3 style="color: white;">{{img.movie_name}} </h3>
+            </div>
+          </div>
+         
+        </div>
+
+        <h2 style="color: white;" id ="thriller">Thriller Movies / TV Shows</h2>
+        <div class="slider-container" style="color: white;">
+          <div class="slider-wrapper" >
+            <div *ngFor="let img of thrill_images | async" class="slider-item " >
+           
+         
+              <!-- <img src={{images[0][0]}}> -->
+              <!-- {{img.movie_name}} ={{movie_title}} -->
+              <img src={{img.movie_img}} (click)='set(img.movie_name)'>
+              <h3 style="color: white;">{{img.movie_name}} </h3>
+            </div>
+          </div>
+         
+        </div>
+
+        <h2 style="color: white;" id ="scifi">Sci-Fi Movies / TV Shows</h2>
+        <div class="slider-container" style="color: white;">
+          <div class="slider-wrapper" >
+            <div *ngFor="let img of sci_images | async" class="slider-item " >
+           
+         
+              <!-- <img src={{images[0][0]}}> -->
+              <!-- {{img.movie_name}} ={{movie_title}} -->
+              <img src={{img.movie_img}} (click)='set(img.movie_name)'>
+              <h3 style="color: white;">{{img.movie_name}} </h3>
+            </div>
+          </div>
+         
+        </div>
+
+        <h2 style="color: white;">My List</h2>
+        <!-- let data = myList();
+        console.log(data); -->
+        <div id="cont" class="slider-container">
+          <div id="mylist" class="slider-wrapper">
+
+            <!-- <body onload="myList()"></body> -->
+            <div *ngFor="let img of images | async" class="slider-item " >
+           
+         
+              <!-- <img src={{images[0][0]}}> -->
+              <!-- {{img.movie_name}} ={{movie_title}} -->
+              <img src={{img.movie_img}} (click)='set(img.movie_name)' >
+              <h3 style="color: white;">{{img.movie_name}} </h3>
+            </div>
+         
+          </div>
+         
+        </div>
+
+        <h2 style="color: white;" id="head">New Releases</h2>
+        <!-- let data = myList();
+        console.log(data); -->
+        <div id="cont" class="slider-container">
+          <div id="mylist" class="slider-wrapper">
+
+            <!-- <body onload="myList()"></body> -->
+            <div *ngFor="let img of new_images | async" class="slider-item " >
+           
+         
+              <!-- <img src={{images[0][0]}}> -->
+              <!-- {{img.movie_name}} ={{movie_title}} -->
+              <img src={{img.movie_img}} (click)='set(img.movie_name)'>
+              <h3 style="color: white;">{{img.movie_name}} </h3>
+            </div>
+         
+          </div>
+          </div>
+        <!-- </div> -->
+        
+        <h2 id="head">My List</h2>
+        <!-- let data = myList();
+        console.log(data); -->
+        <div id="cont" class="slider-container">
+          <div id="mylist" class="slider-wrapper">
+          
+          </div>
+         
+        </div>
+        <!-- <div style=" display:flex; justify-content:center">
+          <button style="color: white;" class="slider-prev" (click)="prev('mylist')"
+          >
+          prev
+          </button>
+          <button style="color: white;" class="slider-next" (click)="next('mylist')"
+          >
+          next
+        </button>
+        </div> -->
+       
+      </div>
+
+      
+      <!--  -->
+    </section>
+    
+
+
+  
+   
+  </body>
+  
+</html>

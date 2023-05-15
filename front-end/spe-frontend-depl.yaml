@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spe-frontend-depl
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spe-frontend
+  template:
+    metadata:
+      labels:
+        app: spe-frontend
+    spec:
+      containers:
+        - name: spe-frontend
+          image: spe-frontend:latest  # Replace with your actual image repository and tag
+          ports:
+            - containerPort: 3000  # Specify the container port the application is listening on

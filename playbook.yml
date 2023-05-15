@@ -1,0 +1,61 @@
+---
+- name: Deploying with Kubernetes
+  hosts: localhost
+  tasks:
+    - name: install pre-requisites
+      pip:
+        name:
+          - openshift
+          - pyyaml
+          - kubernetes
+
+
+    - name: Create spe sqldb credentials
+      kubernetes.core.k8s:
+        state: present
+        definition: "{{ lookup('file', './kubernetes/mysqldb-credentials.yaml') | from_yaml }}"
+
+    - name: Create spe sqldb root credentials
+      kubernetes.core.k8s:
+        state: present
+        definition: "{{ lookup('file', './kubernetes/mysqldb-root-credentials.yaml') | from_yaml }}"
+
+    - name: Create spe sql configmap
+      kubernetes.core.k8s:
+        state: present
+        definition: "{{ lookup('file', './kubernetes/mysql-configmap.yaml') | from_yaml }}"
+
+    - name: Create spe sql pvc
+      kubernetes.core.k8s:
+        state: present
+        definition: "{{ lookup('file', './kubernetes/mysql-pvc.yaml') | from_yaml }}"
+
+    - name: Create spe sql service
+      kubernetes.core.k8s:
+        state: present
+        definition: "{{ lookup('file', './kubernetes/mysql-service.yaml') | from_yaml }}"
+
+    - name: Create spe sql deployment
+      kubernetes.core.k8s:
+        state: present
+        definition: "{{ lookup('file', './kubernetes/mysql-deployment.yaml') | from_yaml }}"
+
+    - name: Create spe service
+      kubernetes.core.k8s:
+        state: present
+        definition: "{{ lookup('file', './kubernetes/service.yaml') | from_yaml }}"
+
+    - name: Create spe deployment
+      kubernetes.core.k8s:
+        state: present
+        definition: "{{ lookup('file', './kubernetes/deployment.yaml') | from_yaml }}"
+
+    - name: Create Frontend service
+      kubernetes.core.k8s:
+        state: present
+        definition: "{{ lookup('file', './frontend/kubernetes/frontend-service.yaml') | from_yaml }}"
+
+    - name: Create Frontend Deployment
+      kubernetes.core.k8s:
+        state: present
+        definition: "{{ lookup('file', './frontend/kubernetes/frontend-depl.yaml') | from_yaml }}"
