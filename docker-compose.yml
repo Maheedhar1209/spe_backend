@@ -1,0 +1,32 @@
+version: '3'
+services:
+  spring-boot-app:
+    container_name: springboot
+    image: springboot-app
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      MYSQL_HOST: mysqldb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: Banty.1208
+      MYSQL_PORT: 3306
+    depends_on:
+      - mysqldb
+    networks:
+      - backend
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: Banty.1208
+      MYSQL_DATABASE: spe
+    networks:
+      - backend
+
+networks:
+    backend:
+
+

@@ -6,13 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="imap_backend" />
+        <module name="spe" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="imap_backend" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="imap_backend" options="-parameters" />
+      <module name="spe" options="-parameters" />
     </option>
   </component>
 </project>

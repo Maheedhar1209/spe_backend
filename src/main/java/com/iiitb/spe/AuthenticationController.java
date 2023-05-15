@@ -94,8 +94,8 @@ public class AuthenticationController {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/user/verifyOTP").permitAll()
-                .antMatchers("/user/sendOTP").permitAll()
-                .anyRequest().authenticated();
+                .antMatchers("/user/sendOTP").permitAll();
+               // .anyRequest().authenticated();
 
         http.authenticationProvider(authenticationProvider());
 

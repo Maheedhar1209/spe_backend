@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService {
 
     private static final String ACCOUNT_SID = "AC00d6db9084eb417e0d35f8e8082638a3"; //System.getenv("ACbc91ba0b1ce5b5020130385133c2ae46");
-    private static final String AUTH_TOKEN = "74b63afa89c9638046946722637947cd"; //System.getenv("aa2cab81ac3f795ce2280dbe04659ef1");
+    private static final String AUTH_TOKEN = "ceb481e3624e3a93ef880865420b08b9"; //System.getenv("aa2cab81ac3f795ce2280dbe04659ef1");
 
     public void create_service() {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
