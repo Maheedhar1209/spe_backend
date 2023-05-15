@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: db-conf
+  name: db-conf-spe
   namespace: default
 data:
- host: spe
- name: spe
+  host: mysql-spe
+  name: spe

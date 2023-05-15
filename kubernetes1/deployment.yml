@@ -2,6 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: springboot-k8s-mysql
+  namespace: default
   labels:
     name: springboot-k8s-mysql
 spec:
@@ -19,6 +20,7 @@ apiVersion: apps/v1
 kind: Deployment    
 metadata:              
   name: springboot-k8s-mysql
+  namespace: default
 spec:                
   selector:         
     matchLabels:
