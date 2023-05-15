@@ -23,20 +23,17 @@
     - name: Create spe sql configmap
       kubernetes.core.k8s:
         state: present
-        definition: "{{ lookup('file', './kubernetes1/mysql-configmap.yaml') | from_yml }}"
+        definition: "{{ lookup('file', './kubernetes1/mysql-configmap.yml') | from_yml }}"
 
 
 
     - name: Create spe sql deployment
       kubernetes.core.k8s:
         state: present
-        definition: "{{ lookup('file', './kubernetes1/mysql-deployment.yaml') | from_yml }}"
+        definition: "{{ lookup('file', './kubernetes1/mysql-deployment.yml') | from_yml }}"
 
 
-    - name: Create Frontend service
-      kubernetes.core.k8s:
-        state: present
-        definition: "{{ lookup('file', './frontend/kubernetes/frontend-service.yaml') | from_yml }}"
+
 
     - name: Create Frontend Deployment
       kubernetes.core.k8s:
