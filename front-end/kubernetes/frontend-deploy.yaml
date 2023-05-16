@@ -17,4 +17,4 @@ spec:
         - name: spe-frontend
           image: spe-frontend:latest  # Replace with your actual image repository and tag
           ports:
-            - containerPort: 3000  # Specify the container port the application is listening on
+            - containerPort: 4200  # Specify the container port the application is listening on

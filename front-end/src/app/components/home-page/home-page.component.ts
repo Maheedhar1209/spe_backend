@@ -21,7 +21,7 @@ import { waitForAsync } from '@angular/core/testing';
 
 
 export class HomePageComponent {
-  
+
   isLoaded = false;
   divElement:any;
 movie_title: any;
@@ -55,10 +55,10 @@ slidenext = "transform: translateX(0px);";
   async newReleases() {
     this.new_images = this.homepageservice.getnewreleases();
     this.new_release = await this.new_images.toPromise();
-    
+
     this.all_movies = "";
     this.no_of_movies = 0;
-    
+
     this.new_release?.forEach((item: {
       id?:number ;
       movie_name?:String;
@@ -71,7 +71,7 @@ slidenext = "transform: translateX(0px);";
         this.all_movies += item.movie_name + ",";
       }
     });
-    
+
     this.show_no_of_movies = this.no_of_movies;
   }
   ngOnInit() {
@@ -88,25 +88,25 @@ slidenext = "transform: translateX(0px);";
       if (this.movie_title=="" || this.movie_title == null && false)
        alert("Please type a movie");
       else{
-       
+
         this.homepageservice.getMovieDetails(this.movie_title)
         .subscribe((res:Movie_Details)=>{
         this.moviedetails=res;
         if (this.moviedetails==null)
           alert("movie not found,try another movie");
         else{
-        this.movie_details="Movie name is "+this.moviedetails?.movie_name  + ".Release date is " + this.moviedetails?.release_date + ".OTT platforms are " + this.moviedetails?.ott_platforms; 
+        this.movie_details="Movie name is "+this.moviedetails?.movie_name  + ".Release date is " + this.moviedetails?.release_date + ".OTT platforms are " + this.moviedetails?.ott_platforms;
         console.log(this.moviedetails.movie_name);
         console.log(this.moviedetails.movie_img);
         localStorage.setItem("movie_details",JSON.stringify(this.movie_details));
         localStorage.setItem("movie_img", JSON.stringify(this.moviedetails));
-        this.router.navigate(["popup"]);  
+        this.router.navigate(["popup"]);
       }
         });
         // container?.append(wrap);
         // console.log(container);
       }
-      
+
     }
 
 
@@ -116,9 +116,10 @@ slidenext = "transform: translateX(0px);";
       toastClass: 'toast-custom', // <-- Use the custom class here
       positionClass: 'toast-top-right',
       timeOut:5000
-      
-  
+
+
     });
+    this.no_of_movies=0;
   }
   logout(){
     this.homepageservice.logout()
@@ -127,7 +128,7 @@ slidenext = "transform: translateX(0px);";
     });
     this.router.navigate(["/"]);
   }
-  
+
 
 
 async myList() {
@@ -147,7 +148,7 @@ async Genre() {
     this.movie_title = movie_name;
     this.moviesearch();
   }
-  
+
 
 }
 

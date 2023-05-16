@@ -17,7 +17,7 @@ spec:
         - name: spe-app
           image: spe-app
           ports:
-            - containerPort: 9100
+            - containerPort: 8101
           volumeMounts:
             - name: data
               mountPath: /logs

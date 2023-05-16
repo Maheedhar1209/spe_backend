@@ -1,15 +1,15 @@
 server:
-  port: 9090
+  port: 8101
 spring:
   application:
     name: GATEWAY-SERVICE
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${DB_HOST:localhost:3306}/${DB_NAME:spe_db} #?useSSL=false
+    url: jdbc:mysql://${DB_HOST:localhost:3306}/${DB_NAME:spe}?useSSL=false
     username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:root}
+    password: ${DB_PASSWORD:Banty.1208}
     hikari:
-      initialization-fail-timeout: 0
+      initialization-fail-timeout: 5000
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     generate-ddl: true

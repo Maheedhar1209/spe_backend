@@ -8,6 +8,6 @@ spec:
   selector:
     app: spe-frontend
   ports:
-    - port: 3000
-      targetPort: 3000
+    - port: 4200
+      targetPort: 4200
       nodePort: 30170

@@ -19,7 +19,7 @@ services:
     container_name: mysqldb
     image: mysql:latest
     ports:
-      - 3306:3306
+      - 3307:3306
     environment:
       MYSQL_ROOT_PASSWORD: Banty.1208
       MYSQL_DATABASE: spe

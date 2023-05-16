@@ -1,8 +1,8 @@
 FROM openjdk:8
 WORKDIR /app
-COPY target/spe.jar spe.jar
+COPY target/spe.jar ./spe.jar
 
-EXPOSE 8080
+EXPOSE 8101
 
 
 
@@ -10,5 +10,5 @@ EXPOSE 8080
 
 
 # Start the Spring Boot application
-CMD ["java", "-jar", "/spe.jar"]
+CMD ["java", "-jar", "spe.jar"]
 

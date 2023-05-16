@@ -8,8 +8,8 @@ metadata:
 spec:
   ports:
     - nodePort: 30164
-      port: 9100
-      targetPort: 9100
+      port: 8101
+      targetPort: 8101
       protocol: TCP
   selector:
     app: spe-app
